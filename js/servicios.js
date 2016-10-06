@@ -43,7 +43,7 @@ app.service('servicio', function(){
         }         
      }
      vm.tamanoCubosOcantidadOperaciones = function (buscado){
-         // esta funcion obtiene el tamaño de los cubos
+         // esta funcion obtiene el tamaño de los cubos o la cantidad de transacciones que se realizaran en el cubo según el parametro enviado
          var i=1;
          var j=0;
          var aux;
@@ -55,7 +55,6 @@ app.service('servicio', function(){
                  if(vm.textoSeparado[i].indexOf("QUERY") == -1)
                  {
                      //tiene que ser menor a 100 el tamaño del cubo
-                     console.log(vm.textoSeparado[i]);
                      aux=vm.textoSeparado[i].split(" ");
                      if(aux[buscado]<100)
                      {
@@ -95,8 +94,32 @@ app.service('servicio', function(){
         }
          return matriz;
      }
-     vm.obtenerOperacionesPorCubo = function (){
+     vm.obtenerOperacionesPorCubo = function (posicionesIniciales){
+         //la funcion divide las operaciones que deben ir en cada cubo
+         var todasLasOperaciones = new Array(new Array(),new Array()); 
+         var j=0;
+         var k=0;
+         var i=0;
          
+         for(i=1;i<vm.textoSeparado.length;i++)
+         {
+             if(vm.textoSeparado[i].indexOf("UPDATE") == 0 || vm.textoSeparado[i].indexOf("QUERY") == 0)
+             {
+                 if(j<posicionesIniciales[k] && k<posicionesIniciales.length)
+                 {
+                     j++;
+                     todasLasOperaciones[k][j] =vm.textoSeparado[i];                     
+                     debugger;
+                 }
+                 else
+                 {                    
+                    j=0;
+                    k++;
+                    todasLasOperaciones[k][j] =vm.textoSeparado[i];
+                 }
+             }
+         }
+         return todasLasOperaciones;
      }
      vm.realizarOperaciones = function (cubo,operaciones){
          
