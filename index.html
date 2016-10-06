@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="cubo">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Matriz 3D Javascript</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+                <h1>Cube Summation</h1>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12" ng-controller="campoOperaciones">
+              <div class="col-md-12"><label for="exampleInputFile">Ingrese las operaciones</label></div>
+              <div class="col-md-6">
+                <textarea name="operaciones" id="textoOperaciones" cols="60" rows="15" ng-model="casosPrueba" ng-class="correcto"></textarea>
+              </div>
+              <div class="col-md-12">
+                  <button ng-click="obtenerCasos()" class="btn btn-success">Calcular</button>              
+              </div>
+              <div class="col-md-6">
+                <textarea name="operaciones" id="textoOperaciones" cols="60" rows="15" ng-model="resutaldos" ng-class="correcto"></textarea>
+              </div>                          
+            </div>            
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+    <script src="js/servicios.js"></script>
+</body>
+</html>
